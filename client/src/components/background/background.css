@@ -15,11 +15,15 @@
             rgba(190,0,0,1) 100%);
 }
 
-.background > button{
-  width: 100px;
-  height: 20px;
+.background > div{
+  width: 150px;
+  height: auto;
   margin: 0 auto;
 }
-.background > button:hover{
+.background > div > button{
+  height: 30px;
+  width: 150px;
+}
+.background > div > button:hover{
   cursor: pointer;
 }

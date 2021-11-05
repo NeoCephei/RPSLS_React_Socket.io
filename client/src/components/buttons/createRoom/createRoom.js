@@ -13,7 +13,9 @@ function CreateRoom (props) {
   }
 
   return (
-    <button type = "button" className = "createRoom" onClick={btnClick}> Create Room </button>
+    <div className="createRoomBtn">
+      <button type = "button" className = "createRoom" onClick={btnClick}> Create Room </button>
+    </div>
   )
 }
 

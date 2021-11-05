@@ -1,5 +1,5 @@
 import './joinRoom.css'
-import React, {useContext} from 'react'
+import React, {useState, useContext} from 'react'
 
 import GlobalContext from './../../../hooks/globalContext'
 
@@ -8,12 +8,26 @@ function JoinRoom (props) {
   const {appFunctions} = useContext(GlobalContext)
   const {joinRoom} = appFunctions
 
+  const [room, setRoom] = useState('')
+
   function btnClick () {
-    joinRoom()
+    if (room.length > 0) {
+      joinRoom(room)
+    } else {
+      alert('Please enter some text room')
+    }
+  }
+
+  function handleRoomInputChange (e) {
+    setRoom(e.target.value);
   }
 
   return (
-    <button type = "button" className = "joinRoom" onClick={btnClick}> Join Room </button>
+    <div className="joinRoomBtn">
+      <input id="roomCodeInput" type="text" placeholder="Enter room code"
+        value={room} onChange={handleRoomInputChange}></input>
+      <button type = "button" className = "joinRoom" onClick={btnClick}> Join Room </button>
+    </div>
   )
 }
 
