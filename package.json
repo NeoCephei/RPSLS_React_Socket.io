@@ -1,0 +1,20 @@
+{
+  "name": "RPSLS_React_Socket.io",
+  "version": "1.0.0",
+  "description": "ROCK - PAPER - SCISSORS - LIZZARD - SPOCK I just want to learn how to use socket.io or how to \"link\" 2 different clients through the same server in order to play sth together.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeoCephei/RPSLS_React_Socket.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NeoCephei/RPSLS_React_Socket.io/issues"
+  },
+  "homepage": "https://github.com/NeoCephei/RPSLS_React_Socket.io#readme"
+}
