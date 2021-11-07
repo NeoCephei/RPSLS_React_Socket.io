@@ -11,8 +11,10 @@ function Player2Options ({roomId, players}) {
   const displayName = players.player2;
 
   function btnClick (e) {
-    console.log(e.target.className)
-    // setOption(e.target.className)
+    if (e.target.classList.contains("Player2")) {
+      console.log(e.target.classList[1])
+      // setOption(e.target.className)
+    }
   }
 
   return (
@@ -21,11 +23,11 @@ function Player2Options ({roomId, players}) {
         <h2>Welcome {displayName}</h2>
       </div>
       <div className="playerOptions">
-        <button type = "button" className = "Rock" onClick={btnClick}> Rock </button>
-        <button type = "button" className = "Paper" onClick={btnClick}> Paper </button>
-        <button type = "button" className = "Scissors" onClick={btnClick}> Scissors </button>
-        <button type = "button" className = "Lizzard" onClick={btnClick}> Lizzard </button>
-        <button type = "button" className = "Spock" onClick={btnClick}> Spock </button>
+        <button type = "button" className = "Player2 Rock" onClick={btnClick}> Rock </button>
+        <button type = "button" className = "Player2 Paper" onClick={btnClick}> Paper </button>
+        <button type = "button" className = "Player2 Scissors" onClick={btnClick}> Scissors </button>
+        <button type = "button" className = "Player2 Lizzard" onClick={btnClick}> Lizzard </button>
+        <button type = "button" className = "Player2 Spock" onClick={btnClick}> Spock </button>
       </div>
     </div>
   )
