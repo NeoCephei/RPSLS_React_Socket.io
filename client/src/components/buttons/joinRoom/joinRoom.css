@@ -7,11 +7,6 @@
   text-align: center;
   border: 0;
   height: 30px;
-  border-top-left-radius: 30px;
-}
-.joinRoomBtn > button{
-  border-bottom-right-radius: 30px;
-  border: none;
 }
 
 .joinRoomBtn > input:focus-visible{

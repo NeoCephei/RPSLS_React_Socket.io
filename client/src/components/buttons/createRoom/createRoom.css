@@ -1,5 +1,12 @@
-.createRoomBtn > button{
-  border-top-left-radius: 30px;
-  border-bottom-right-radius: 30px;
-  border: none;
+.createRoomBtn{
+  display: flex;
+  flex-direction: column;
+}
+.createRoomBtn > input{
+  text-align: center;
+  border: 0;
+  height: 30px;
+}
+.createRoomBtn > input:focus-visible{
+  outline: none;
 }

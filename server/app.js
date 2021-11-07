@@ -10,16 +10,15 @@ const server = express.listen(PORT,()=>{
   console.log(`server started at http://localhost:${PORT}`);
 })
 
-const io=socket(server, {
+const io = socket(server, {
   cors: {
     origin: '*',
   }
 });
 
 //ALL player info
-let players = {};
-
-let connections = 0;
+let players = {room: '', player1: '', player2: ''};
+let connections = 0; //I have to delete this one
 
 //GAME VARIABLES
 let choice1 = "";
@@ -30,19 +29,23 @@ io.on("connection",(socket)=>{
     console.log("connection established", connections);
 
     //Create Game Listener
-    socket.on('createRoom',(data) =>{
+    socket.on('createRoom',({name}) =>{
       const roomID = randomstring.generate({length: 4});
       socket.join(roomID);
-      players[roomID]=data.name;
-      socket.emit("newGame",{roomID:roomID});
+      players.room = roomID
+      players.player1 = name
+      socket.emit('newGame', {roomID});
     })
 
     //Join Game Listener
-    socket.on('joinGame', (data) => {
-        console.log('server data: ', data)
-        socket.join(data.roomID);
-        socket.to(data.roomID).emit("player2Joined",{p2name: data.name,p1name:players[data.roomID]});
-        socket.emit("player1Joined",{p2name:players[data.roomID],p1name:data.name});
+    socket.on('joinGame', ({name, roomID}) => {
+        if (Object.values(players).includes(roomID)) {
+          socket.join(roomID);
+          players.player2 = name;
+          io.to(roomID).emit('startGame', players)
+        } else {
+          socket.emit('wrongRoom', roomID);
+        }
     });
 })
 

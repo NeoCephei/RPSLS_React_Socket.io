@@ -1,15 +1,20 @@
 import './ingame.css';
 
-import Navbar from './../../components/navbar/navbar'
+import React, {useEffect} from 'react'
 
-function Ingame(props) {
-  const {roomId} = props
+import Navbar from './../../components/navbar/navbar'
+import IngameBG from './../../components/ingameBG/ingameBG'
+
+function Ingame({roomId, players, player2Online}) {
+
+  useEffect(() => {
+    console.log('>>>>> Ingame?');
+  },[players])
 
   return (
     <div className="Ingame">
-      <Navbar/>
-      <h1>Waiting for player 2</h1>
-      <p>Your room is {roomId}</p>
+      <Navbar />
+      <IngameBG player2Online={player2Online} players={players} roomId={roomId} />
     </div>
   );
 }

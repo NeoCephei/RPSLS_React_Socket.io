@@ -1,0 +1,26 @@
+.ingameBG {
+  width: 100%;
+  height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  background: rgb(11,0,190);
+  background: linear-gradient(90deg, 
+            rgba(11,0,190,1) 0%, 
+            rgba(17,0,255,1) 48%, 
+            rgba(255,255,255,1) 50%, 
+            rgba(255,0,0,1) 52%, 
+            rgba(190,0,0,1) 100%);
+}
+
+.ingameBG > div{
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

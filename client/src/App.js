@@ -10,47 +10,35 @@ import Ingame from './pages/ingame/ingame'
 const socket = io.connect('http://localhost:4000')
 
 let roomId;
+let players = {player1: '', player2: ''};
 
 function App() {
 
   const [player1, setPlayer1] = useState(false);
-  // useEffect(() =>{}, [player1])
+  const [player2, setPlayer2] = useState(false);
+  const room = player1||player2 ? <Ingame roomId={roomId} players={players} player2Online={player2}/> : <HomeScreen />;
 
-  const room = player1 ? <Ingame roomId={roomId} /> : <HomeScreen />;
-
-  socket.on('newGame',(data) => {
-    const {roomID} = data;
+  //SOCKETS RECIEVERS
+  socket.on('newGame', ({roomID}) => {
     roomId = roomID;
     setPlayer1(true);
   });
-
-  function createRoom () {
-    socket.emit('createRoom', {name: 'Player 1'})
-  }
-
-  function joinRoom (data) {
-    console.log('client data: ', data)
-    socket.emit('joinGame',{
-      name:'player 2',
-      roomID:data
-    });
-  }
-
-  //Player 1 Joined
-  socket.on("player1Joined", (data) => {
-    console.log("Player 1 joined", data);
-    transition(data);
+  socket.on("startGame", (data) => {
+    setPlayer2(true);
   })
-  //Player 2 Joined
-  socket.on("player2Joined", (data) => {
-    console.log("Player 2 joined", data);
-    transition(data);
+  socket.on("wrongRoom", (data) => {
+    alert(`The room ${data} doesn't exist. Try again`)
   })
 
-
-const transition = (data) => {
-  console.log(data)
-}
+  //FUNCTIONS EMITTERS
+  function createRoom (name) {
+    players.player1 = name;
+    socket.emit('createRoom', {name})
+  }
+  function joinRoom (name , roomID) {
+    players.player2 = name;
+    socket.emit('joinGame', {name, roomID});
+  }
 
   const appFunctions = {createRoom: createRoom, joinRoom: joinRoom}
 
